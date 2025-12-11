@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_MOVIE_API_KEY
+        Authorization: `Bearer  ${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
       }
     };
 
@@ -25,9 +25,17 @@ export default function Home() {
   return (
     <div>
       {movies.map((movie) => (
-        <div key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-        </div>
+        <Link key={movie.id} href={`/movie/${movie.id}`}>
+          <div className="relative">
+            <img 
+            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} className="w-full h-auto rounded-lg" />
+
+            {/* Title overlay */}
+            <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white p-2 rounded-b-lg">
+            {movie.title}
+            </div>
+          </div>
+        </Link>
       ))}
     </div>
   );
