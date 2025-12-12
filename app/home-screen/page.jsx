@@ -19,12 +19,12 @@ export default function Home() {
             }
         };
         const today = new Date();
-        const oneMonthAgo = new Date();
-        oneMonthAgo.setMonth(today.getMonth() - 1);
+        const oneYearAgo = new Date();
+        oneYearAgo.setFullYear(today.getFullYear() - 1);
         const todayStr = today.toISOString().split("T")[0];
-        const oneMonthAgoStr = oneMonthAgo.toISOString().split("T")[0];
+        const oneYearAgoStr = oneYearAgo.toISOString().split("T")[0];
 
-        fetch(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${oneMonthAgoStr}&primary_release_date.lte=${todayStr}&sort_by=primary_release_date.desc`,
+        fetch(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${oneYearAgoStr}&primary_release_date.lte=${todayStr}&sort_by=primary_release_date.desc`,
       options)
             .then(res => res.json())
             .then(data => {console.log(data); setMovies(data.results)})
