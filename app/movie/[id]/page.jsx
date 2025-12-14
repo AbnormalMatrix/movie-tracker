@@ -27,8 +27,15 @@ export default function Movie() {
 
     if (loaded) {
         return (
-            <main>
-                <Link href={movie.homepage}><h1 className="text-4xl">{movie.title}</h1></Link>
+            <main className="min-h-screen bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')` }}>
+
+                <div className="absolute inset-0 bg-black/0"></div>
+
+                <Link href={movie.homepage}>
+                    <h1 className="text-4xl">
+                        {movie.title}
+                    </h1>
+                </Link>
                 
                 <h2>{movie.release_date.split("-")[0]}</h2>
                 <h2>{movie.tagline}</h2>
