@@ -1,5 +1,6 @@
 "use client"
 
+import Navbar from "@/app/components/navbar";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -85,34 +86,38 @@ export default function Movie() {
 
     if (loaded) {
         return (
-            <main className="min-h-screen bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')` }}>
+            <div>
+                <Navbar />
+                <main className="pt-16 min-h-screen bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')` }}>
 
-                <div className="absolute inset-0 bg-black/60"></div>
+                    <div className="absolute inset-0 bg-black/60"></div>
 
-                <div className="relative z-10 p-8">
-                    <Link href={movie.homepage}>
-                        <h1 className="text-4xl text-white hover:underline">
-                            {movie.title}
-                        </h1>
-                    </Link>
-                    
-                    <h2 className="text-xl text-gray-200">{movie.release_date?.split("-")[0]}</h2>
-                    <h2 className="text-lg text-gray-300 italic">{movie.tagline}</h2>
-                    
-                    <button
-                        onClick={isInWatchlist ? removeFromWatchlist : addToWatchlist}
-                        className={`mt-4 px-6 py-2 rounded font-semibold transition-colors ${
-                            isInWatchlist
-                                ? 'bg-red-600 hover:bg-red-700 text-white'
-                                : 'bg-blue-600 hover:bg-blue-700 text-white'
-                        }`}
-                    >
-                        {isInWatchlist ? '✓ In Watchlist' : '+ Add to Watchlist'}
-                    </button>
+                    <div className="relative z-10 p-8">
+                        <Link href={movie.homepage}>
+                            <h1 className="text-4xl text-white hover:underline">
+                                {movie.title}
+                            </h1>
+                        </Link>
+                        
+                        <h2 className="text-xl text-gray-200">{movie.release_date?.split("-")[0]}</h2>
+                        <h2 className="text-lg text-gray-300 italic">{movie.tagline}</h2>
+                        
+                        <button
+                            onClick={isInWatchlist ? removeFromWatchlist : addToWatchlist}
+                            className={`mt-4 px-6 py-2 rounded font-semibold transition-colors ${
+                                isInWatchlist
+                                    ? 'bg-red-600 hover:bg-red-700 text-white'
+                                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                            }`}
+                        >
+                            {isInWatchlist ? '✓ In Watchlist' : '+ Add to Watchlist'}
+                        </button>
 
-                    <p className="text-white mt-6 max-w-2xl">{movie.overview}</p>
-                </div>
-            </main>
+                        <p className="text-white mt-6 max-w-2xl">{movie.overview}</p>
+                    </div>
+                </main>
+            </div>
+
         );
     } else {
         return (
