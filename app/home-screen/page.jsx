@@ -56,6 +56,9 @@ export default function Home() {
 
     return (
         <div className="p-4">
+            <h1 className="text-5xl">
+                Box Office
+            </h1>
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="mb-6">
                 <div className="flex gap-2">
